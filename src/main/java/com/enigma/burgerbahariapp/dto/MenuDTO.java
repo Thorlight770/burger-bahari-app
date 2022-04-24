@@ -9,6 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class MenuDTO {
     private String idMenu;
-    private Double price;
+    private Double priceCheapest;
+    private Double priceExpensive;
     private String description;
 }
