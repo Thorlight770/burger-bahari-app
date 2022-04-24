@@ -26,4 +26,6 @@ public class Customer {
     private String phoneNumber;
     private String address;
     private Boolean isDeleted;
+
+    //cobacommit
 }
