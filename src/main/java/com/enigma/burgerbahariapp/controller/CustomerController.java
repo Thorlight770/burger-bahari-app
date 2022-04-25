@@ -22,24 +22,14 @@ public class CustomerController {
         return customerService.saveCustomer(customer);
     }
 
-    @GetMapping("/all")
-    public PageResponseWrapper<Customer> getAllCustomer(@RequestParam(name = "page", defaultValue = "0") Integer page,
-                                                        @RequestParam(name = "size", defaultValue = "3") Integer sizePerPage,
-                                                        @RequestParam(name = "sort", defaultValue = "name") String sort,
-                                                        @RequestParam(name = "direction", defaultValue = "ASC") Sort.Direction direction) {
-        Pageable pageable = PageRequest.of(page, sizePerPage, Sort.by(direction, sort));
-        Page<Customer> customerPage = customerService.getAllCustomer(pageable);
-        return new PageResponseWrapper<>(customerPage);
-    }
-
     @GetMapping
-    public PageResponseWrapper<Customer> getCustomerByData(@RequestBody CustomerSearchDTO customerSearchDTO,
+    public PageResponseWrapper<Customer> getCustomer(@RequestBody CustomerSearchDTO customerSearchDTO,
                                                            @RequestParam(name = "page", defaultValue = "0") Integer page,
                                                            @RequestParam(name = "size", defaultValue = "3") Integer sizePerPage,
                                                            @RequestParam(name = "sort", defaultValue = "name") String sort,
                                                            @RequestParam(name = "direction", defaultValue = "ASC") Sort.Direction direction) {
         Pageable pageable = PageRequest.of(page, sizePerPage, Sort.by(direction, sort));
-        Page<Customer> customerPage = customerService.getCustomerByData(pageable, customerSearchDTO);
+        Page<Customer> customerPage = customerService.getCustomer(pageable, customerSearchDTO);
         return new PageResponseWrapper<>(customerPage);
     }
 

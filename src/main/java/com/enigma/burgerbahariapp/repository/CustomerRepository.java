@@ -11,6 +11,5 @@ import java.util.Optional;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, String>, JpaSpecificationExecutor {
-    Page<Customer> findAll(Pageable pageable);
     Optional<Customer> findByEmail(String email);
 }

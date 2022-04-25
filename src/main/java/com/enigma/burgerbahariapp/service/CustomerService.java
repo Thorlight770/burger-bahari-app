@@ -7,8 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface CustomerService {
     Customer saveCustomer(Customer customer);
-    Page<Customer> getAllCustomer(Pageable pageable);
-    Page<Customer> getCustomerByData(Pageable pageable, CustomerSearchDTO customerSearchDTO);
+    Page<Customer> getCustomer(Pageable pageable, CustomerSearchDTO customerSearchDTO);
     void deleteCustomer(String id);
     Customer getCustomerByEmail(String email);
 }
