@@ -25,7 +25,7 @@ public class Customer {
     private String email;
     private String phoneNumber;
     private String address;
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
 
     //cobacommit
 }

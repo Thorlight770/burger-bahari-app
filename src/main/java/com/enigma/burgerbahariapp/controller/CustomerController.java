@@ -1,0 +1,55 @@
+package com.enigma.burgerbahariapp.controller;
+
+import com.enigma.burgerbahariapp.dto.CustomerSearchDTO;
+import com.enigma.burgerbahariapp.entity.master.Customer;
+import com.enigma.burgerbahariapp.service.CustomerService;
+import com.enigma.burgerbahariapp.utils.PageResponseWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/customers")
+public class CustomerController {
+    @Autowired
+    CustomerService customerService;
+
+    @PostMapping
+    public Customer saveCustomer(@RequestBody Customer customer) {
+        return customerService.saveCustomer(customer);
+    }
+
+    @GetMapping("/all")
+    public PageResponseWrapper<Customer> getAllCustomer(@RequestParam(name = "page", defaultValue = "0") Integer page,
+                                                        @RequestParam(name = "size", defaultValue = "3") Integer sizePerPage,
+                                                        @RequestParam(name = "sort", defaultValue = "name") String sort,
+                                                        @RequestParam(name = "direction", defaultValue = "ASC") Sort.Direction direction) {
+        Pageable pageable = PageRequest.of(page, sizePerPage, Sort.by(direction, sort));
+        Page<Customer> customerPage = customerService.getAllCustomer(pageable);
+        return new PageResponseWrapper<>(customerPage);
+    }
+
+    @GetMapping
+    public PageResponseWrapper<Customer> getCustomerByData(@RequestBody CustomerSearchDTO customerSearchDTO,
+                                                           @RequestParam(name = "page", defaultValue = "0") Integer page,
+                                                           @RequestParam(name = "size", defaultValue = "3") Integer sizePerPage,
+                                                           @RequestParam(name = "sort", defaultValue = "name") String sort,
+                                                           @RequestParam(name = "direction", defaultValue = "ASC") Sort.Direction direction) {
+        Pageable pageable = PageRequest.of(page, sizePerPage, Sort.by(direction, sort));
+        Page<Customer> customerPage = customerService.getCustomerByData(pageable, customerSearchDTO);
+        return new PageResponseWrapper<>(customerPage);
+    }
+
+    @PutMapping
+    public Customer updateCustomer(@RequestBody Customer customer) {
+        return customerService.saveCustomer(customer);
+    }
+
+    @PutMapping("/delete")
+    public void deleteCustomer(@RequestParam String id) {
+        customerService.deleteCustomer(id);
+    }
+}
