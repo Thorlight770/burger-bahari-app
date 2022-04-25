@@ -1,4 +1,4 @@
-package com.enigma.burgerbahariapp;
+package com.enigma.burgerbahariapp.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
