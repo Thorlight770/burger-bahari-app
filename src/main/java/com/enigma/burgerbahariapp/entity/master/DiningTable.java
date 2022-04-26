@@ -19,5 +19,5 @@ public class DiningTable {
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
     private Integer number;
-    private Boolean status;
+    private Boolean status = false;
 }
