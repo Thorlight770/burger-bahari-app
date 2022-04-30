@@ -14,8 +14,6 @@ import javax.persistence.Table;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
 public class AddOn {
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -23,5 +21,5 @@ public class AddOn {
     private String id;
     private Double price;
     private String description;
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
 }
