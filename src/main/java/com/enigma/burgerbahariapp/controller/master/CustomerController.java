@@ -1,9 +1,9 @@
-package com.enigma.burgerbahariapp.controller;
+package com.enigma.burgerbahariapp.controller.master;
 
 import com.enigma.burgerbahariapp.dto.CustomerSearchDTO;
 import com.enigma.burgerbahariapp.entity.master.Customer;
-import com.enigma.burgerbahariapp.service.CustomerService;
-import com.enigma.burgerbahariapp.utils.PageResponseWrapper;
+import com.enigma.burgerbahariapp.service.master.CustomerService;
+import com.enigma.burgerbahariapp.util.PageResponseWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,4 +42,9 @@ public class CustomerController {
     public void deleteCustomer(@RequestParam String id) {
         customerService.deleteCustomer(id);
     }
+
+//    @GetMapping("/{email}")
+//    public Customer getCustomerByEmail(@PathVariable String email){
+//        return customerService.getCustomerByEmail(email);
+//    }
 }

@@ -1,9 +1,9 @@
-package com.enigma.burgerbahariapp.service.impl;
+package com.enigma.burgerbahariapp.service.master.impl;
 
 import com.enigma.burgerbahariapp.dto.DiningTableSearchDTO;
 import com.enigma.burgerbahariapp.entity.master.DiningTable;
-import com.enigma.burgerbahariapp.repository.DiningTableRepository;
-import com.enigma.burgerbahariapp.service.DiningTableService;
+import com.enigma.burgerbahariapp.repository.master.DiningTableRepository;
+import com.enigma.burgerbahariapp.service.master.DiningTableService;
 import com.enigma.burgerbahariapp.specification.DiningTableSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

@@ -1,9 +1,9 @@
-package com.enigma.burgerbahariapp.service.impl;
+package com.enigma.burgerbahariapp.service.master.impl;
 
 import com.enigma.burgerbahariapp.dto.CustomerSearchDTO;
 import com.enigma.burgerbahariapp.entity.master.Customer;
-import com.enigma.burgerbahariapp.repository.CustomerRepository;
-import com.enigma.burgerbahariapp.service.CustomerService;
+import com.enigma.burgerbahariapp.repository.master.CustomerRepository;
+import com.enigma.burgerbahariapp.service.master.CustomerService;
 import com.enigma.burgerbahariapp.specification.CustomerSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

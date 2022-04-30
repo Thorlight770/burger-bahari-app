@@ -1,4 +1,4 @@
-package com.enigma.burgerbahariapp.service;
+package com.enigma.burgerbahariapp.service.master;
 
 import com.enigma.burgerbahariapp.dto.DiningTableSearchDTO;
 import com.enigma.burgerbahariapp.entity.master.DiningTable;

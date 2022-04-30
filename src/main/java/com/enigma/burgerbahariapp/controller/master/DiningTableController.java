@@ -1,9 +1,9 @@
-package com.enigma.burgerbahariapp.controller;
+package com.enigma.burgerbahariapp.controller.master;
 
 import com.enigma.burgerbahariapp.dto.DiningTableSearchDTO;
 import com.enigma.burgerbahariapp.entity.master.DiningTable;
-import com.enigma.burgerbahariapp.service.DiningTableService;
-import com.enigma.burgerbahariapp.utils.PageResponseWrapper;
+import com.enigma.burgerbahariapp.service.master.DiningTableService;
+import com.enigma.burgerbahariapp.util.PageResponseWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,4 +32,9 @@ public class DiningTableController {
         Page<DiningTable> diningTablePage = diningTableService.getTable(pageable, diningTableSearchDTO);
         return new PageResponseWrapper<>(diningTablePage);
     }
+
+//    @GetMapping("/{number}")
+//    public DiningTable getTableByNumber(@PathVariable Integer number){
+//        return diningTableService.getTableByNumber(number);
+//    }
 }

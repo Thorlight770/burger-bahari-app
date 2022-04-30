@@ -1,4 +1,4 @@
-package com.enigma.burgerbahariapp.service;
+package com.enigma.burgerbahariapp.service.master;
 
 import com.enigma.burgerbahariapp.dto.CustomerSearchDTO;
 import com.enigma.burgerbahariapp.entity.master.Customer;

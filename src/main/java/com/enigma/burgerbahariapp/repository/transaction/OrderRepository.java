@@ -1,4 +1,4 @@
-package com.enigma.burgerbahariapp.repository;
+package com.enigma.burgerbahariapp.repository.transaction;
 
 import com.enigma.burgerbahariapp.entity.transaction.Order;
 import org.springframework.data.jpa.repository.JpaRepository;

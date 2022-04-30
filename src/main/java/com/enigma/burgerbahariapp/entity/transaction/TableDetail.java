@@ -1,6 +1,7 @@
 package com.enigma.burgerbahariapp.entity.transaction;
 
 import com.enigma.burgerbahariapp.entity.master.DiningTable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -22,6 +23,7 @@ public class TableDetail {
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
@@ -29,6 +31,6 @@ public class TableDetail {
     @JoinColumn(name = "dining_table_id")
     private DiningTable diningTable;
     private LocalDateTime date;
-    @OneToMany(mappedBy = "tableDetail")
-    private List<OrderDetail> orderDetailList;
+//    @OneToMany(mappedBy = "tableDetail", cascade=CascadeType.ALL)
+//    private List<OrderDetail> orderDetailList;
 }

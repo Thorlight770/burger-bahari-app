@@ -1,4 +1,4 @@
-package com.enigma.burgerbahariapp.repository;
+package com.enigma.burgerbahariapp.repository.master;
 
 import com.enigma.burgerbahariapp.entity.master.DiningTable;
 import org.springframework.data.jpa.repository.JpaRepository;

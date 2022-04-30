@@ -24,6 +24,6 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer;
     private String status;
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     private List<TableDetail> tableDetailList;
 }
