@@ -14,8 +14,6 @@ import javax.persistence.Table;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
 public class AddOn {
     @Id
     @GeneratedValue(generator = "system-uuid")
