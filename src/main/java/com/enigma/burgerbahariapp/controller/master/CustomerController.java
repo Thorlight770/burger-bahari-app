@@ -42,9 +42,4 @@ public class CustomerController {
     public void deleteCustomer(@RequestParam String id) {
         customerService.deleteCustomer(id);
     }
-
-//    @GetMapping("/{email}")
-//    public Customer getCustomerByEmail(@PathVariable String email){
-//        return customerService.getCustomerByEmail(email);
-//    }
 }

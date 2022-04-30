@@ -19,7 +19,7 @@ public class DiningTableController {
 
     @PostMapping
     public DiningTable saveTable(@RequestBody DiningTable diningTable) {
-        return diningTableService.saveTable(diningTable);
+        return diningTableService.saveNewTable(diningTable);
     }
 
     @GetMapping
@@ -32,9 +32,4 @@ public class DiningTableController {
         Page<DiningTable> diningTablePage = diningTableService.getTable(pageable, diningTableSearchDTO);
         return new PageResponseWrapper<>(diningTablePage);
     }
-
-//    @GetMapping("/{number}")
-//    public DiningTable getTableByNumber(@PathVariable Integer number){
-//        return diningTableService.getTableByNumber(number);
-//    }
 }

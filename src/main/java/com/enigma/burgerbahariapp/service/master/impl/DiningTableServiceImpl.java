@@ -20,11 +20,16 @@ public class DiningTableServiceImpl implements DiningTableService {
     DiningTableRepository diningTableRepository;
 
     @Override
-    public DiningTable saveTable(DiningTable diningTable) {
+    public DiningTable saveNewTable(DiningTable diningTable) {
         if (diningTableRepository.findByNumber(diningTable.getNumber()).isPresent()) {
             throw new DataAlreadyUsed(String.format(ResponseMessage.DATA_IS_USED, "table", diningTable.getNumber()));
         }
         return diningTableRepository.save(diningTable);
+    }
+
+    @Override
+    public void saveTable(DiningTable diningTable) {
+        diningTableRepository.save(diningTable);
     }
 
     @Override

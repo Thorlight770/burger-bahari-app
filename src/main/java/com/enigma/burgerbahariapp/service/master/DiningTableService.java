@@ -6,7 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface DiningTableService {
-    DiningTable saveTable(DiningTable diningTable);
+    DiningTable saveNewTable(DiningTable diningTable);
+    void saveTable(DiningTable diningTable);
     Page<DiningTable> getTable(Pageable pageable, DiningTableSearchDTO diningTableSearchDTO);
     DiningTable getTableByNumber(Integer number);
 }

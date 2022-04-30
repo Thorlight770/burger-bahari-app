@@ -33,12 +33,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transient
     @Transactional
-    public Order transaction(Order order, String status) {
+    public Order transaction(Order order) {
         Customer customer = customerService.getCustomerByEmail(order.getCustomer().getEmail());
         order.setCustomer(customer);
 
         Order order1 = orderRepository.save(order);
         LocalDateTime localDateTime = null;
+        String multipleTable = "";
+        order1.setStatus("direct");
 
         for(TableDetail tableDetail: order1.getTableDetailList()) {
             tableDetail.setOrder(order1);
@@ -46,10 +48,14 @@ public class OrderServiceImpl implements OrderService {
             DiningTable diningTable = diningTableService.getTableByNumber(tableDetail.getDiningTable().getNumber());
             if (tableDetail.getDate()==null && localDateTime==null) {
                 localDateTime = LocalDateTime.now();
+                multipleTable = "true";
+                diningTable.setStatus(true);
+            } else if (multipleTable.equals("true")) {
+                diningTable.setStatus(true);
             } else if (tableDetail.getDate()!=null) {
                 localDateTime = tableDetail.getDate();
+                order1.setStatus("book");
             }
-            diningTable.setStatus(true);
             diningTableService.saveTable(diningTable);
 
             tableDetail.setDate(localDateTime);
@@ -58,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
 
-        order1.setStatus(status);
+
         return orderRepository.save(order1);
     }
 }

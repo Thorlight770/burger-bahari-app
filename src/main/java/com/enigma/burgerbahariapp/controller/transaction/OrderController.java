@@ -12,9 +12,7 @@ public class OrderController {
     OrderService orderService;
 
     @PostMapping
-    public Order createTransaction(@RequestBody Order order,
-                                   @RequestParam (name = "status", defaultValue = "direct") String status) {
-
-        return orderService.transaction(order, status);
+    public Order createTransaction(@RequestBody Order order) {
+        return orderService.transaction(order);
     }
 }
