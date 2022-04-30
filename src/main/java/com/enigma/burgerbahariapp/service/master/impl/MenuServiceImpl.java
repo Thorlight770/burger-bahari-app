@@ -2,7 +2,7 @@ package com.enigma.burgerbahariapp.service.master.impl;
 
 import com.enigma.burgerbahariapp.dto.MenuDTO;
 import com.enigma.burgerbahariapp.entity.master.Menu;
-import com.enigma.burgerbahariapp.repository.MenuRepository;
+import com.enigma.burgerbahariapp.repository.master.MenuRepository;
 import com.enigma.burgerbahariapp.service.master.MenuService;
 import com.enigma.burgerbahariapp.specification.CustomMenuSpecification;
 import org.springframework.beans.factory.annotation.Autowired;

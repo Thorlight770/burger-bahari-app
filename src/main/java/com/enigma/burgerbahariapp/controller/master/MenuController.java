@@ -21,7 +21,7 @@ public class MenuController {
     public PageResponseWrapper<Menu> menuPageResponseWrapper(@RequestBody MenuDTO menuDTO,
                                                              @RequestParam(name = "page", defaultValue = "0")Integer page,
                                                              @RequestParam(name = "size", defaultValue = "3")Integer size,
-                                                             @RequestParam(name = "sort", defaultValue = "description") String sort,
+                                                             @RequestParam(name = "sort", defaultValue = "name") String sort,
                                                              @RequestParam(name = "direction", defaultValue = "asc") String direction) {
         System.out.println("[MENU DTO] "+menuDTO.getDescription());
         Sort sorting = Sort.by(Sort.Direction.fromString(direction), sort);
