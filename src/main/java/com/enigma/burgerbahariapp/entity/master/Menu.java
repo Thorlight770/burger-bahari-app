@@ -3,10 +3,7 @@ package com.enigma.burgerbahariapp.entity.master;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "mst_menu")
@@ -14,8 +11,6 @@ import javax.persistence.Table;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
 public class Menu {
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -23,5 +18,5 @@ public class Menu {
     private String id;
     private Double price;
     private String description;
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
 }

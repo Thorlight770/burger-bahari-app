@@ -17,10 +17,6 @@ public class CustomMenuSpecification {
             List<Predicate> predicates = new ArrayList<>();
             @Override
             public Predicate toPredicate(Root<Menu> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                if (menuDTO.getIdMenu() != null){
-                    Predicate menuIdPredicate = criteriaBuilder.equal(root.get("id"), menuDTO.getIdMenu());
-                    predicates.add(menuIdPredicate);
-                }
                 if (menuDTO.getPriceCheapest() != null){
                     Predicate menuPrice;
                     if (menuDTO.getPriceExpensive() != null){

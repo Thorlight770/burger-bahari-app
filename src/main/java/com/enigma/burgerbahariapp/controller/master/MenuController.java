@@ -12,21 +12,27 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "${menu.url}")
+@RequestMapping(value = "/menu")
 public class MenuController {
     @Autowired
     private MenuService menuService;
 
     @GetMapping
-    public PageResponseWrapper<Menu> menuPageResponseWrapper(@RequestParam MenuDTO menuDTO,
+    public PageResponseWrapper<Menu> menuPageResponseWrapper(@RequestBody MenuDTO menuDTO,
                                                              @RequestParam(name = "page", defaultValue = "0")Integer page,
                                                              @RequestParam(name = "size", defaultValue = "3")Integer size,
-                                                             @RequestParam(name = "sort", defaultValue = "idMenu") String sort,
+                                                             @RequestParam(name = "sort", defaultValue = "description") String sort,
                                                              @RequestParam(name = "direction", defaultValue = "asc") String direction) {
+        System.out.println("[MENU DTO] "+menuDTO.getDescription());
         Sort sorting = Sort.by(Sort.Direction.fromString(direction), sort);
         Pageable pageable = PageRequest.of(page, size, sorting);
-        Page<Menu> customers = menuService.getSpecificationMenu(pageable, menuDTO);
-        return new PageResponseWrapper<>(customers);
+        Page<Menu> menus = menuService.getSpecificationMenu(pageable, menuDTO);
+        return new PageResponseWrapper<>(menus);
+    }
+
+    @GetMapping("/{id}")
+    public Menu menuGetById(@PathVariable String id){
+        return menuService.findMenuById(id);
     }
 
     @PostMapping
