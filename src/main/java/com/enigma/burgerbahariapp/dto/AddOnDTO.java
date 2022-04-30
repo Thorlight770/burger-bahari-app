@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class AddOnDTO {
+    private String name;
     private String description;
     private Double priceCheapest;
     private Double priceExpensive;

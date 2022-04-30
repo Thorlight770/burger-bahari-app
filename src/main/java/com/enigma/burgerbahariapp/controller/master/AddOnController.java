@@ -21,11 +21,13 @@ public class AddOnController {
     public PageResponseWrapper<AddOn> getSpecificationAddOn(@RequestBody AddOnDTO addOnDTO,
                                                             @RequestParam(name = "page", defaultValue = "0")Integer page,
                                                             @RequestParam(name = "size", defaultValue = "3")Integer size,
-                                                            @RequestParam(name = "sort", defaultValue = "id")String sort,
+                                                            @RequestParam(name = "sort", defaultValue = "name")String sort,
                                                             @RequestParam(name = "direction", defaultValue = "asc")String direction){
+        System.out.println("ADD ON DTO "+ addOnDTO.getName());
         Sort sorting = Sort.by(Sort.Direction.fromString(direction), sort);
         Pageable pageable = PageRequest.of(page, size, sorting);
         Page<AddOn> addOns = addOnService.getSpecificationAddOn(pageable, addOnDTO);
+        System.out.println("ADD ONS ELEMENT "+addOns.getTotalElements());
         return new PageResponseWrapper<>(addOns);
     }
 

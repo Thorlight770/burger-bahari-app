@@ -19,6 +19,7 @@ public class AddOn {
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
+    private String name;
     private Double price;
     private String description;
     private Boolean isDeleted = false;

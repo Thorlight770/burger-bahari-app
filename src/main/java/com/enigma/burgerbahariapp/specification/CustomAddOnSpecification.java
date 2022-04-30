@@ -17,18 +17,22 @@ public class CustomAddOnSpecification {
             List<Predicate> predicates =new ArrayList<>();
             @Override
             public Predicate toPredicate(Root<AddOn> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                if (addOnDTO.getName() != null){
+                    Predicate addOnNamePredicate = criteriaBuilder.like(root.get("name"), "%" +addOnDTO.getName()+ "%");
+                    predicates.add(addOnNamePredicate);
+                }
                 if (addOnDTO.getDescription() != null){
-                    Predicate addOnDescriptionPredicate = criteriaBuilder.equal(root.get("description"), "%" +addOnDTO.getDescription()+ "%");
+                    Predicate addOnDescriptionPredicate = criteriaBuilder.like(root.get("description"), "%" +addOnDTO.getDescription()+ "%");
                     predicates.add(addOnDescriptionPredicate);
                 }
                 if (addOnDTO.getPriceCheapest() != null){
+                    Predicate addOnPrice;
                     if (addOnDTO.getPriceExpensive() != null){
-                        Predicate addOnPriceBetween = criteriaBuilder.between(root.get("price"), addOnDTO.getPriceCheapest(), addOnDTO.getPriceExpensive());
-                        predicates.add(addOnPriceBetween);
+                        addOnPrice = criteriaBuilder.between(root.get("price"), addOnDTO.getPriceCheapest(), addOnDTO.getPriceExpensive());
                     }else {
-                        Predicate addOnPriceCheapest = criteriaBuilder.equal(root.get("price"), addOnDTO.getPriceCheapest());
-                        predicates.add(addOnPriceCheapest);
+                        addOnPrice = criteriaBuilder.equal(root.get("price"), addOnDTO.getPriceCheapest());
                     }
+                    predicates.add(addOnPrice);
                 }
                 Predicate[] arrayPredicates = predicates.toArray(new Predicate[predicates.size()]);
                 return criteriaBuilder.and(arrayPredicates);
