@@ -11,5 +11,5 @@ import java.util.Optional;
 
 @Repository
 public interface TableDetailRepository extends JpaRepository<TableDetail, String>, JpaSpecificationExecutor {
-    Optional<TableDetail> findByDateAndDiningTable(LocalDateTime date, DiningTable diningTable);
+    Optional<TableDetail> findByDiningTableAndAndDateBetween(DiningTable diningTable, LocalDateTime from, LocalDateTime to);
 }

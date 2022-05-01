@@ -6,5 +6,6 @@ import com.enigma.burgerbahariapp.entity.transaction.TableDetail;
 import java.time.LocalDateTime;
 
 public interface TableDetailService {
-    TableDetail getTableByNumber(LocalDateTime date, DiningTable diningTable);
+    void saveTableDetail(TableDetail tableDetail);
+    TableDetail getTableByTableIdAndDate(DiningTable diningTable, LocalDateTime from, LocalDateTime to);
 }

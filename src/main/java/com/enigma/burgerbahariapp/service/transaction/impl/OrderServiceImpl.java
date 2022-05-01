@@ -1,14 +1,16 @@
 package com.enigma.burgerbahariapp.service.transaction.impl;
 
+import com.enigma.burgerbahariapp.constant.ResponseMessage;
 import com.enigma.burgerbahariapp.entity.master.Customer;
 import com.enigma.burgerbahariapp.entity.master.DiningTable;
 import com.enigma.burgerbahariapp.entity.transaction.Order;
 import com.enigma.burgerbahariapp.entity.transaction.TableDetail;
+import com.enigma.burgerbahariapp.exception.DataAlreadyUsed;
 import com.enigma.burgerbahariapp.repository.transaction.OrderRepository;
-import com.enigma.burgerbahariapp.repository.transaction.TableDetailRepository;
 import com.enigma.burgerbahariapp.service.master.CustomerService;
 import com.enigma.burgerbahariapp.service.master.DiningTableService;
 import com.enigma.burgerbahariapp.service.transaction.OrderService;
+import com.enigma.burgerbahariapp.service.transaction.TableDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Transient;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,7 @@ public class OrderServiceImpl implements OrderService {
     CustomerService customerService;
 
     @Autowired
-    TableDetailRepository tableDetailRepository;
+    TableDetailService tableDetailService;
 
     @Override
     @Transient
@@ -38,8 +40,8 @@ public class OrderServiceImpl implements OrderService {
         order.setCustomer(customer);
 
         Order order1 = orderRepository.save(order);
+
         LocalDateTime localDateTime = null;
-        String multipleTable = "";
         order1.setStatus("direct");
 
         for(TableDetail tableDetail: order1.getTableDetailList()) {
@@ -48,23 +50,28 @@ public class OrderServiceImpl implements OrderService {
             DiningTable diningTable = diningTableService.getTableByNumber(tableDetail.getDiningTable().getNumber());
             if (tableDetail.getDate()==null && localDateTime==null) {
                 localDateTime = LocalDateTime.now();
-                multipleTable = "true";
-                diningTable.setStatus(true);
-            } else if (multipleTable.equals("true")) {
-                diningTable.setStatus(true);
             } else if (tableDetail.getDate()!=null) {
                 localDateTime = tableDetail.getDate();
                 order1.setStatus("book");
+            }
+
+            if (order1.getStatus().equals("book")) {
+                if (tableDetailService.getTableByTableIdAndDate(diningTable, localDateTime.minusHours(1), localDateTime.plusHours(1))!=null) {
+                    throw new DataAlreadyUsed(String.format(ResponseMessage.DATA_IS_USED, "customer", customer.getEmail()));
+                }
+            } else {
+                if (diningTable.getStatus().equals(true)) {
+                    throw new DataAlreadyUsed(String.format(ResponseMessage.DATA_IS_USED, "customer", customer.getEmail()));
+                } else {
+                    diningTable.setStatus(true);
+                }
             }
             diningTableService.saveTable(diningTable);
 
             tableDetail.setDate(localDateTime);
             tableDetail.setDiningTable(diningTable);
-            tableDetailRepository.save(tableDetail);
+            tableDetailService.saveTableDetail(tableDetail);
         }
-
-
-
         return orderRepository.save(order1);
     }
 }

@@ -15,7 +15,17 @@ public class TableDetailServiceImpl implements TableDetailService {
     TableDetailRepository tableDetailRepository;
 
     @Override
-    public TableDetail getTableByNumber(LocalDateTime date, DiningTable diningTable) {
-        return tableDetailRepository.findByDateAndDiningTable(date, diningTable).get();
+    public void saveTableDetail(TableDetail tableDetail) {
+        tableDetailRepository.save(tableDetail);
+    }
+
+    @Override
+    public TableDetail getTableByTableIdAndDate(DiningTable diningTable, LocalDateTime from, LocalDateTime to) {
+        if (tableDetailRepository.findByDiningTableAndAndDateBetween(diningTable, from, to).isPresent()) {
+            return tableDetailRepository.findByDiningTableAndAndDateBetween(diningTable, from, to).get();
+        } else {
+            return null;
+        }
+
     }
 }
