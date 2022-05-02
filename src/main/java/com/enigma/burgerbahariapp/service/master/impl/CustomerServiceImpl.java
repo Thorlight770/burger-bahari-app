@@ -1,13 +1,13 @@
 package com.enigma.burgerbahariapp.service.master.impl;
 
 import com.enigma.burgerbahariapp.constant.ResponseMessage;
-import com.enigma.burgerbahariapp.dto.CustomerSearchDTO;
+import com.enigma.burgerbahariapp.dto.master.CustomerSearchDTO;
 import com.enigma.burgerbahariapp.entity.master.Customer;
 import com.enigma.burgerbahariapp.exception.DataAlreadyUsed;
 import com.enigma.burgerbahariapp.exception.DataNotFoundException;
 import com.enigma.burgerbahariapp.repository.master.CustomerRepository;
 import com.enigma.burgerbahariapp.service.master.CustomerService;
-import com.enigma.burgerbahariapp.specification.CustomerSpecification;
+import com.enigma.burgerbahariapp.specification.master.CustomerSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

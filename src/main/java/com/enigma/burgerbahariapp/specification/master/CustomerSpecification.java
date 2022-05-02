@@ -1,6 +1,6 @@
-package com.enigma.burgerbahariapp.specification;
+package com.enigma.burgerbahariapp.specification.master;
 
-import com.enigma.burgerbahariapp.dto.CustomerSearchDTO;
+import com.enigma.burgerbahariapp.dto.master.CustomerSearchDTO;
 import com.enigma.burgerbahariapp.entity.master.Customer;
 import org.springframework.data.jpa.domain.Specification;
 

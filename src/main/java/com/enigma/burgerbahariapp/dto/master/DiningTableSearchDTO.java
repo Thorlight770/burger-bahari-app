@@ -1,4 +1,4 @@
-package com.enigma.burgerbahariapp.dto;
+package com.enigma.burgerbahariapp.dto.master;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

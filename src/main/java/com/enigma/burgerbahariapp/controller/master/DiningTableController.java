@@ -1,6 +1,6 @@
 package com.enigma.burgerbahariapp.controller.master;
 
-import com.enigma.burgerbahariapp.dto.DiningTableSearchDTO;
+import com.enigma.burgerbahariapp.dto.master.DiningTableSearchDTO;
 import com.enigma.burgerbahariapp.entity.master.DiningTable;
 import com.enigma.burgerbahariapp.service.master.DiningTableService;
 import com.enigma.burgerbahariapp.util.PageResponseWrapper;
