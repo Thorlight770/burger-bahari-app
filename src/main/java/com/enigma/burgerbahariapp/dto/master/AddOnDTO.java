@@ -1,16 +1,15 @@
-package com.enigma.burgerbahariapp.dto;
+package com.enigma.burgerbahariapp.dto.master;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
-public class MenuDTO {
+public class AddOnDTO {
     private String name;
+    private String description;
     private Double priceCheapest;
     private Double priceExpensive;
-    private String description;
 }

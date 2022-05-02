@@ -1,10 +1,10 @@
 package com.enigma.burgerbahariapp.service.master.impl;
 
-import com.enigma.burgerbahariapp.dto.AddOnDTO;
+import com.enigma.burgerbahariapp.dto.master.AddOnDTO;
 import com.enigma.burgerbahariapp.entity.master.AddOn;
 import com.enigma.burgerbahariapp.repository.master.AddOnRepository;
 import com.enigma.burgerbahariapp.service.master.AddOnService;
-import com.enigma.burgerbahariapp.specification.CustomAddOnSpecification;
+import com.enigma.burgerbahariapp.specification.master.CustomAddOnSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

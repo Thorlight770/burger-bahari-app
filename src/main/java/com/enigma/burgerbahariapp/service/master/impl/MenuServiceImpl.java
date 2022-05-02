@@ -1,10 +1,10 @@
 package com.enigma.burgerbahariapp.service.master.impl;
 
-import com.enigma.burgerbahariapp.dto.MenuDTO;
+import com.enigma.burgerbahariapp.dto.master.MenuDTO;
 import com.enigma.burgerbahariapp.entity.master.Menu;
 import com.enigma.burgerbahariapp.repository.master.MenuRepository;
 import com.enigma.burgerbahariapp.service.master.MenuService;
-import com.enigma.burgerbahariapp.specification.CustomMenuSpecification;
+import com.enigma.burgerbahariapp.specification.master.CustomMenuSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

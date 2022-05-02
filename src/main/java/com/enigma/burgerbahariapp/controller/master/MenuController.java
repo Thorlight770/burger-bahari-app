@@ -1,6 +1,6 @@
 package com.enigma.burgerbahariapp.controller.master;
 
-import com.enigma.burgerbahariapp.dto.MenuDTO;
+import com.enigma.burgerbahariapp.dto.master.MenuDTO;
 import com.enigma.burgerbahariapp.entity.master.Menu;
 import com.enigma.burgerbahariapp.service.master.MenuService;
 import com.enigma.burgerbahariapp.util.PageResponseWrapper;

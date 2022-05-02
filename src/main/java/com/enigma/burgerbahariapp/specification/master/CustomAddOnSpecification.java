@@ -1,6 +1,6 @@
-package com.enigma.burgerbahariapp.specification;
+package com.enigma.burgerbahariapp.specification.master;
 
-import com.enigma.burgerbahariapp.dto.AddOnDTO;
+import com.enigma.burgerbahariapp.dto.master.AddOnDTO;
 import com.enigma.burgerbahariapp.entity.master.AddOn;
 import org.springframework.data.jpa.domain.Specification;
 

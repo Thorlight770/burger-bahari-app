@@ -1,6 +1,6 @@
 package com.enigma.burgerbahariapp.controller.master;
 
-import com.enigma.burgerbahariapp.dto.AddOnDTO;
+import com.enigma.burgerbahariapp.dto.master.AddOnDTO;
 import com.enigma.burgerbahariapp.entity.master.AddOn;
 import com.enigma.burgerbahariapp.service.master.AddOnService;
 import com.enigma.burgerbahariapp.util.PageResponseWrapper;
