@@ -3,7 +3,9 @@ package com.enigma.burgerbahariapp.service.transaction.impl;
 import com.enigma.burgerbahariapp.constant.ResponseMessage;
 import com.enigma.burgerbahariapp.entity.master.Customer;
 import com.enigma.burgerbahariapp.entity.master.DiningTable;
+import com.enigma.burgerbahariapp.entity.transaction.MenuDetail;
 import com.enigma.burgerbahariapp.entity.transaction.Order;
+import com.enigma.burgerbahariapp.entity.transaction.OrderDetail;
 import com.enigma.burgerbahariapp.entity.transaction.TableDetail;
 import com.enigma.burgerbahariapp.exception.DataAlreadyUsed;
 import com.enigma.burgerbahariapp.repository.transaction.OrderRepository;
@@ -67,6 +69,12 @@ public class OrderServiceImpl implements OrderService {
                 }
             }
             diningTableService.saveTable(diningTable);
+
+            for(OrderDetail orderDetail: tableDetail.getOrderDetailList()) {
+                orderDetail.setTableDetail(tableDetail);
+
+                MenuDetail menuDetail;
+            }
 
             tableDetail.setDate(localDateTime);
             tableDetail.setDiningTable(diningTable);

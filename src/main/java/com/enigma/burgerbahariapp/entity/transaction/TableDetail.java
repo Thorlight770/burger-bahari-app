@@ -31,6 +31,6 @@ public class TableDetail {
     @JoinColumn(name = "dining_table_id")
     private DiningTable diningTable;
     private LocalDateTime date;
-//    @OneToMany(mappedBy = "tableDetail", cascade=CascadeType.ALL)
-//    private List<OrderDetail> orderDetailList;
+    @OneToMany(mappedBy = "tableDetail", fetch = FetchType.LAZY)
+    private List<OrderDetail> orderDetailList;
 }
