@@ -14,14 +14,13 @@ import javax.persistence.Table;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
 public class AddOn {
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
+    private String name;
     private Double price;
     private String description;
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
 }

@@ -11,6 +11,7 @@ import com.enigma.burgerbahariapp.exception.DataAlreadyUsed;
 import com.enigma.burgerbahariapp.repository.transaction.OrderRepository;
 import com.enigma.burgerbahariapp.service.master.CustomerService;
 import com.enigma.burgerbahariapp.service.master.DiningTableService;
+import com.enigma.burgerbahariapp.service.transaction.MenuDetailService;
 import com.enigma.burgerbahariapp.service.transaction.OrderService;
 import com.enigma.burgerbahariapp.service.transaction.TableDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     TableDetailService tableDetailService;
+
+    @Autowired
+    MenuDetailService menuDetailService;
 
     @Override
     @Transient
@@ -73,7 +77,8 @@ public class OrderServiceImpl implements OrderService {
             for(OrderDetail orderDetail: tableDetail.getOrderDetailList()) {
                 orderDetail.setTableDetail(tableDetail);
 
-                MenuDetail menuDetail;
+                MenuDetail menuDetail = menuDetailService.getMenuDetailById(orderDetail.getMenuDetail().getId());
+
             }
 
             tableDetail.setDate(localDateTime);
