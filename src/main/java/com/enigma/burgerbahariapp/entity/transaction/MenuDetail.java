@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -28,4 +29,6 @@ public class MenuDetail {
     private AddOn addOn;
     private Integer quantity;
     private Double priceDetail;
+    @OneToMany(mappedBy = "menuDetail", fetch = FetchType.LAZY)
+    private List<OrderDetail> orderDetailList;
 }
