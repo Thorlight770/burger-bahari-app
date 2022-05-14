@@ -37,9 +37,7 @@ public class MenuDetailServiceImpl implements MenuDetailService {
     @Transactional
     public MenuDetail saveMenuDetail(MenuDetail menuDetail) {
         Menu menu = menuService.findMenuById(menuDetail.getMenu().getId());
-        System.out.println("[MENU] "+menu.getName());
         AddOn addOn = addOnService.findAddOnById(menuDetail.getAddOn().getId());
-        System.out.println("[ADDON] "+addOn.getName());
 
         Double priceDetail = (menu.getPrice() + addOn.getPrice()) * menuDetail.getQuantity();
 

@@ -3,6 +3,7 @@ package com.enigma.burgerbahariapp.service.transaction.impl;
 import com.enigma.burgerbahariapp.constant.ResponseMessage;
 import com.enigma.burgerbahariapp.entity.master.Customer;
 import com.enigma.burgerbahariapp.entity.master.DiningTable;
+import com.enigma.burgerbahariapp.entity.master.Menu;
 import com.enigma.burgerbahariapp.entity.transaction.MenuDetail;
 import com.enigma.burgerbahariapp.entity.transaction.Order;
 import com.enigma.burgerbahariapp.entity.transaction.OrderDetail;
@@ -12,14 +13,18 @@ import com.enigma.burgerbahariapp.repository.transaction.OrderRepository;
 import com.enigma.burgerbahariapp.service.master.CustomerService;
 import com.enigma.burgerbahariapp.service.master.DiningTableService;
 import com.enigma.burgerbahariapp.service.transaction.MenuDetailService;
+import com.enigma.burgerbahariapp.service.transaction.OrderDetailService;
 import com.enigma.burgerbahariapp.service.transaction.OrderService;
 import com.enigma.burgerbahariapp.service.transaction.TableDetailService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Transient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -38,6 +43,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     MenuDetailService menuDetailService;
 
+    @Autowired
+    OrderDetailService orderDetailService;
+
     @Override
     @Transient
     @Transactional
@@ -48,6 +56,8 @@ public class OrderServiceImpl implements OrderService {
         Order order1 = orderRepository.save(order);
 
         LocalDateTime localDateTime = null;
+        Boolean menu = false;
+        List<OrderDetail> orderDetailListTemp = new ArrayList<>();
         order1.setStatus("direct");
 
         for(TableDetail tableDetail: order1.getTableDetailList()) {
@@ -74,11 +84,26 @@ public class OrderServiceImpl implements OrderService {
             }
             diningTableService.saveTable(diningTable);
 
-            for(OrderDetail orderDetail: tableDetail.getOrderDetailList()) {
-                orderDetail.setTableDetail(tableDetail);
+            if (!menu) {
+                Double subTotal = 0.0;
+                for(OrderDetail orderDetail: tableDetail.getOrderDetailList()) {
+                    orderDetail.setTableDetail(tableDetail);
+                    MenuDetail menuDetail = orderDetail.getMenuDetail();
 
-                MenuDetail menuDetail = menuDetailService.getMenuDetailById(orderDetail.getMenuDetail().getId());
+                    menuDetailService.saveMenuDetail(menuDetail);
 
+                    orderDetail.setMenuDetail(menuDetail);
+
+                    subTotal += menuDetail.getPriceDetail();
+
+                    orderDetail.setSubtotal(subTotal);
+
+                    orderDetailService.saveOrderDetail(orderDetail);
+                    orderDetailListTemp.add(orderDetail);
+                }
+                menu = true;
+            } else {
+                tableDetail.setOrderDetailList(orderDetailListTemp);
             }
 
             tableDetail.setDate(localDateTime);

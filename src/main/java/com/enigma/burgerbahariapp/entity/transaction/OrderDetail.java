@@ -1,5 +1,6 @@
 package com.enigma.burgerbahariapp.entity.transaction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -18,6 +19,7 @@ public class OrderDetail {
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "table_detail_id")
     private TableDetail tableDetail;
